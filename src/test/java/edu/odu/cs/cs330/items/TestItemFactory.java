@@ -69,7 +69,8 @@ public class TestItemFactory
         String inputStr = "Food Green-Tea Wake-Up 5";
 
         Item item = ItemFactory.parseItemLine(inputStr);
-
+        System.out.println(item);
+        System.out.println(foodItem.toString());
         assertThat(item, equalTo(foodItem));
         assertThat(item.toString(), equalTo(foodItem.toString()));
     }

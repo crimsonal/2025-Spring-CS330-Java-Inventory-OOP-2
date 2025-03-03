@@ -46,7 +46,14 @@ public class Armour extends Item {
      */
     public Armour()
     {
-
+        super("");
+        
+        this.durability = 0;
+        this.defense = 0;
+        this.material = "";
+        this.modifier = "";
+        this.modifierLevel = 0;
+        this.element = "";
     }
 
     /**
@@ -56,7 +63,13 @@ public class Armour extends Item {
      */
     public Armour(Armour src)
     {
-
+        this.setName(src.getName());
+        this.setDurability(src.getDurability());
+        this.setDefense(src.getDefense());
+        this.setMaterial(src.getMaterial());
+        this.setModifier(src.getModifier());
+        this.setModifierLevel(src.getModifierLevel());
+        this.setElement(src.getElement());
     }
 
     /**
@@ -191,7 +204,13 @@ public class Armour extends Item {
     @Override
     public void read(Scanner snr)
     {
-
+        this.name   = snr.next();
+        this.material = snr.next();
+        this.durability = snr.nextInt();
+        this.defense = snr.nextInt();
+        this.modifier = snr.next();
+        this.modifierLevel = snr.nextInt();
+        this.element = snr.next();
     }
 
     /**
@@ -217,6 +236,10 @@ public class Armour extends Item {
         }
 
         Armour rhsItem = (Armour) rhs;
+        if (rhsItem.name == this.name && rhsItem.material == this.material && rhsItem.modifier == this.modifier &&
+        rhsItem.element == this.element) {
+            return true;
+        }
 
         // Replace the next line
         return false;
@@ -229,7 +252,7 @@ public class Armour extends Item {
     @Override
     public int hashCode()
     {
-        return -1;
+        return this.name.hashCode() + this.material.hashCode() + this.modifier.hashCode() + this.element.hashCode();
     }
 
     /**
@@ -238,7 +261,16 @@ public class Armour extends Item {
     @Override
     public String toString()
     {
-        return "";
+        String FMT_STR = "%s: %s\n";
+        String FMT_STR_a = "%s: %s";
+        String FMT_INT =   "%s: %d\n";
+
+        return String.format(FMT_STR, "  Nme", super.name) +
+        String.format(FMT_INT, "  Dur", this.durability) +
+        String.format(FMT_INT, "  Def", this.defense) + 
+        String.format(FMT_STR, "  Mtl", this.material) +
+        String.format(FMT_STR_a + " (Lvl %d)\n", "  Mdr", this.modifier, this.modifierLevel) +
+        String.format(FMT_STR, "  Emt", this.element);
     }
 }
 

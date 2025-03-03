@@ -57,6 +57,13 @@ public class Tool extends Item {
      */
     public Tool(Tool src)
     {
+        this.name = src.name;
+        this.durability = src.durability;
+        this.speed = src.speed;
+        this.material = src.material;
+        this.modifier = src.modifier;
+        this.modifierLevel = src.modifierLevel;
+        
 
     }
 
@@ -172,7 +179,14 @@ public class Tool extends Item {
     @Override
     public void read(Scanner snr)
     {
-        // Complete this method
+        //Nme: Left-Handed Hammer\n  Dur: 9001\n  Spd: 62\n  Mtl: Titanium\n  Mdr: WorkAcceleration (Lvl 999999)\n
+        this.name = snr.next();
+        this.material = snr.next();
+        this.durability = snr.nextInt();
+        this.speed = snr.nextInt();
+        this.modifier = snr.next();
+        this.modifierLevel = snr.nextInt();
+
     }
 
     /**
@@ -197,6 +211,9 @@ public class Tool extends Item {
         }
 
         Tool rhsItem = (Tool) rhs;
+        if (rhsItem.name == name && rhsItem.material == material && rhsItem.modifier == modifier) {
+            return true;
+        }
 
         // Replace the next line
         return false;
@@ -220,6 +237,7 @@ public class Tool extends Item {
     @Override
     public String toString()
     {
-        return "";
+        //Nme: Left-Handed Hammer\n  Dur: 9001\n  Spd: 62\n  Mtl: Titanium\n  Mdr: WorkAcceleration (Lvl 999999)\n
+        return String.format("  Nme: %s\n  Dur: %d\n  Spd: %d\n  Mtl: %s\n  Mdr: %s (Lvl %d)\n", name, durability, speed, material, modifier, modifierLevel);
     }
 }
